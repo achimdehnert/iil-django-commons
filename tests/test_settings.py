@@ -1,6 +1,3 @@
-import pytest
-
-
 def test_get_setting_default():
     from iil_commons.settings import get_setting
 

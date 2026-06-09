@@ -24,7 +24,9 @@ def _rate_limit_key(request: HttpRequest, key_type: str = "ip") -> str:
     if key_type == "user" and hasattr(request, "user") and request.user.is_authenticated:
         return f"iil:rl:user:{request.user.pk}"
     forwarded = request.META.get("HTTP_X_FORWARDED_FOR", "")
-    ip = forwarded.split(",")[0].strip() if forwarded else request.META.get("REMOTE_ADDR", "unknown")
+    ip = (
+        forwarded.split(",")[0].strip() if forwarded else request.META.get("REMOTE_ADDR", "unknown")
+    )
     return f"iil:rl:ip:{ip}"
 
 

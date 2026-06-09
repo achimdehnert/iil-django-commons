@@ -6,7 +6,7 @@ def test_base_task_correlation_id_empty_without_headers():
 
     task = BaseTask()
     mock_request = type("R", (), {"headers": None, "id": "t1", "retries": 0})()
-    with patch.object(type(task), "request", new=mock_request):
+    with patch.object(type(task), "request", new=mock_request, create=True):
         assert task._get_correlation_id() == ""
 
 
@@ -17,7 +17,7 @@ def test_base_task_correlation_id_from_headers():
     mock_request = type(
         "R", (), {"headers": {"X-Correlation-ID": "abc-123"}, "id": "t1", "retries": 0}
     )()
-    with patch.object(type(task), "request", new=mock_request):
+    with patch.object(type(task), "request", new=mock_request, create=True):
         assert task._get_correlation_id() == "abc-123"
 
 
