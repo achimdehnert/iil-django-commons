@@ -5,7 +5,7 @@ from typing import Any
 
 from django.http import HttpRequest, HttpResponse
 
-from iil_commons.ratelimit.middleware import _check_rate_limit, _parse_rate, _rate_limit_key
+from iil_commons.ratelimit.middleware import _check_rate_limit, _rate_limit_key
 
 logger = logging.getLogger(__name__)
 

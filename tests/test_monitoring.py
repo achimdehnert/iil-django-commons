@@ -22,6 +22,7 @@ def test_metrics_view_without_package(rf):
 
     try:
         import prometheus_client  # noqa: F401
+
         pytest.skip("prometheus_client is installed -- skip no-package test")
     except ImportError:
         pass

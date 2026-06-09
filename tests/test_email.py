@@ -1,6 +1,3 @@
-import pytest
-
-
 def test_email_service_smtp_sends(settings):
     settings.EMAIL_BACKEND = "django.core.mail.backends.locmem.EmailBackend"
     settings.IIL_COMMONS = {"EMAIL_PROVIDER": "smtp"}
@@ -39,9 +36,7 @@ def test_email_service_smtp_failure_returns_false(settings):
         "django.core.mail.EmailMultiAlternatives.send",
         side_effect=Exception("SMTP error"),
     ):
-        result = svc.send(
-            EmailMessage(to=["x@x.com"], subject="S", body="B")
-        )
+        result = svc.send(EmailMessage(to=["x@x.com"], subject="S", body="B"))
     assert result is False
 
 
