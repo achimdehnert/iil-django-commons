@@ -73,7 +73,10 @@ packages = ["src/iil_commons"]
 [tool.pytest.ini_options]
 DJANGO_SETTINGS_MODULE = "tests.settings"
 python_files = ["test_*.py"]
-pythonpath = ["."]
+# src-layout: "src" makes `import iil_commons` work in a clean checkout (no
+# editable install needed); "." keeps the `tests` package importable for
+# DJANGO_SETTINGS_MODULE = "tests.settings".
+pythonpath = ["src", "."]
 testpaths = ["tests"]
 
 [tool.ruff]
