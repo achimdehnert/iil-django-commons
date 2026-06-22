@@ -50,6 +50,7 @@ dev = [
     "pytest>=8.0",
     "pytest-django>=4.8",
     "pytest-mock>=3.12",
+    "pytest-cov>=5.0",
     "factory-boy>=3.3",
     "django-redis>=5.4",
     "redis>=5.0",
@@ -60,6 +61,7 @@ testing = [
     "pytest>=8.0",
     "pytest-django>=4.8",
     "pytest-mock>=3.12",
+    "pytest-cov>=5.0",
     "factory-boy>=3.3",
 ]
 
@@ -78,6 +80,15 @@ python_files = ["test_*.py"]
 # DJANGO_SETTINGS_MODULE = "tests.settings".
 pythonpath = ["src", "."]
 testpaths = ["tests"]
+# Coverage gate ratchets from the current ~78%. Raise the floor as coverage
+# improves; never lower it silently.
+addopts = "--cov=iil_commons --cov-report=term-missing --cov-fail-under=70"
+
+[tool.coverage.run]
+source = ["iil_commons"]
+
+[tool.coverage.report]
+show_missing = true
 
 [tool.ruff]
 line-length = 100
