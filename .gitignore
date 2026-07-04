@@ -12,3 +12,6 @@ build/
 .venv/
 venv/
 .windsurf/.windsurfignore
+
+# Windsurf-Ära Verteil-Symlinks — nicht tracken (platform ADR-265)
+.windsurf/
