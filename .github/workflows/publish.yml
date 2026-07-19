@@ -75,6 +75,13 @@ jobs:
     name: Publish to PyPI
     needs: [test, build]
     runs-on: ubuntu-latest
+    # ADR-278: OIDC Trusted Publishing braucht id-token:write; environment pypi
+    # passend zur Trusted-Publisher-Bindung (repo=iil-django-commons, publish.yml, env=pypi).
+    permissions:
+      id-token: write
+    environment:
+      name: pypi
+      url: https://pypi.org/project/iil-django-commons/
     if: |
       (github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')) ||
       (github.event_name == 'workflow_dispatch' && (github.event.inputs.target == 'pypi' || github.event.inputs.target == ''))
